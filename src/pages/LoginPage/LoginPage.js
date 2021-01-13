@@ -5,11 +5,11 @@ import './LoginPage.css';
 import Parse from 'parse';
 import UserModel from "../../model/UserModel";
 
-function LoginPage(props) {
-    const [email, setEmail] = useState("nir@nir.com");
-    const [pwd, setPwd] = useState("123");
+function LoginPage (props) {
+    const [email, setEmail] = useState("");
+    const [pwd, setPwd] = useState("");
     const [showLoginError, setShowLoginError] = useState(false);
-    const [redirectToRecipes, setRedirectToRecipes] = useState(false);
+    const [redirectToUsers, setRedirectToUsers] = useState(false);
     const {onLogin} = props;
     
     async function login() {
@@ -18,7 +18,7 @@ function LoginPage(props) {
             const parseUser = await Parse.User.logIn(email, pwd);
             // Trigger onLogin event prop + update redirect state so we will redirect to recipes page
             onLogin(new UserModel(parseUser));
-            setRedirectToRecipes(true);    
+            setRedirectToUsers(true);    
         } catch(error) {
             // show an error alert
             console.error('Error while logging in user', error);
@@ -27,13 +27,13 @@ function LoginPage(props) {
     }
 
 
-    if (redirectToRecipes) {
-        return <Redirect to="/recipes"/>;
+    if (redirectToUsers) {
+        return <Redirect to="/users"/>;
     }
 
     return (
         <div className="p-login">
-            <h1>Login to Recipe Book</h1>
+            <h1>Login to Home App</h1>
             <p>or <Link to="/signup">create an account</Link></p>
             {showLoginError ? <Alert variant="danger">Invalid Credentials!</Alert> : null}
             <Form>

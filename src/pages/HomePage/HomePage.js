@@ -1,18 +1,20 @@
 import { Container, Jumbotron } from "react-bootstrap";
-import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
+import AppNavbr from "../../components/AppNavbar/AppNavbr";
+
+
 
 function HomePage(props) {
     const {activeUser, onLogout} = props;
 
     return (
         <div className="p-home">
-            <RecipeNavbr activeUser={activeUser} onLogout={onLogout}/>
+            <AppNavbr activeUser={activeUser} onLogout={onLogout}/>
             <Jumbotron>
                 <Container>
-                    <h1>Recipe Book</h1>
-                    <p>Master your recipes</p>
+                    <h1> Welcome to HomeApp</h1>
                 </Container>
             </Jumbotron>
+           
         </div>
     )
 

@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import NewRecipeModal from "../../components/NewRecipeModal/NewRecipeModal";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
+import AppNavbr from "../../components/AppNavbar/AppNavbr";
 import './RecipesPage.css'
 import Parse from 'parse';
 import RecipeModel from "../../model/RecipeModel";
@@ -18,8 +18,8 @@ function RecipesPage(props) {
             const ParseRecipe = Parse.Object.extend('Recipe');
             const query = new Parse.Query(ParseRecipe);
             query.equalTo("userId", Parse.User.current());
-            const parseRecipes = await query.find();
-            setRecipes(parseRecipes.map(parseRecipe => new RecipeModel(parseRecipe)));
+            const ParseRecipes = await query.find();
+            setRecipes(ParseRecipes.map(parseRecipe => new RecipeModel(ParseRecipe)));
         }
 
         if (activeUser) {
@@ -48,7 +48,7 @@ function RecipesPage(props) {
 
     return (
         <div className="p-recipes">
-            <RecipeNavbr activeUser={activeUser} onLogout={onLogout}/>
+            <AppNavbr activeUser={activeUser} onLogout={onLogout}/>
             <Container>
                 <div className="heading">
                     <h1>{activeUser.fname}'s Recipes</h1>

@@ -2,9 +2,11 @@
 class UserModel {
     constructor(parseUser) {
         this.id = parseUser.id;
-        this.fname = parseUser.get("fname");
-        this.lname = parseUser.get("lname");
+        this.name = parseUser.get("username");
         this.email = parseUser.get("email");
+        this.buildingId = parseUser.get("buildingId");
+        this.isAdmin = parseUser.get("isAdmin");
+        this.apartment = parseUser.get("apartment");
     }
 }
 

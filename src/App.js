@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import Parse from 'parse';
+import UsersPage from './pages/UsersPage/UsersPage';
 import UserModel from './model/UserModel';
 
 
@@ -23,14 +28,15 @@ function App() {
   }
 
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
         <Route exact path="/login"><LoginPage activeUser={activeUser} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
-        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout}/></Route>
+      {/*   protected routs */}
+        <Route exact path="/users"><UsersPage activeUser={activeUser} onLogout={handleLogout}/></Route> 
       </Switch>
-    </HashRouter>
+    </Router>
   );
 }
 
