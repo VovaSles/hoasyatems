@@ -4,13 +4,14 @@ import { Link, Redirect } from "react-router-dom";
 import './LoginPage.css';
 import Parse from 'parse';
 import UserModel from "../../model/UserModel";
+import AppNavbr from "../../components/AppNavbar/AppNavbr";
 
 function LoginPage (props) {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [showLoginError, setShowLoginError] = useState(false);
     const [redirectToUsers, setRedirectToUsers] = useState(false);
-    const {onLogin} = props;
+    const  {activeUser ,onLogin} = props;
     
     async function login() {
 
@@ -32,6 +33,8 @@ function LoginPage (props) {
     }
 
     return (
+        <>
+         <AppNavbr activeUser={activeUser} />
         <div className="p-login">
             <h1>Login to Home App</h1>
             <p>or <Link to="/signup">create an account</Link></p>
@@ -55,6 +58,7 @@ function LoginPage (props) {
                 </Button>
             </Form>
         </div>
+        </>
     )
 
 }
