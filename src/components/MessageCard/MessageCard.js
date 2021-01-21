@@ -1,23 +1,23 @@
 import React from 'react';
-import { Accordion, Card, Container } from "react-bootstrap";
+import { Accordion, Card, Button } from "react-bootstrap";
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 
 function MessageCard(props) {
-    const { message, key} = props;
-  
-    return(
+    const { message, index } = props;
+
+    return (
         <>
-           
-        <Card>
-          <Card.Body>
-          {message.creatorName} <AccessAlarmIcon color="secondary"/>
-               <Card.Text >{message.title}</Card.Text>
-               </Card.Body> 
-               <Card.Footer className="text-muted">{message.createdAt.toString().slice(4, 10)}</Card.Footer> 
-         
-        </Card>
-  
-           
+            <Card>
+                <Accordion.Toggle as={Card.Header} eventKey={message.id}  className="d-flex justify-content-between align-items-center">
+                    {message.creatorName}
+                    <AccessAlarmIcon/>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey={message.id}>
+                    <Card.Body  className="d-flex justify-content-between align-items-center">{message.title}
+                        <Card.Text>{message.createdAt.toString().slice(4, 10)}</Card.Text>
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
         </>
     )
 }

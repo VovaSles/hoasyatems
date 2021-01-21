@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AppNavbr from "../../components/AppNavbar/AppNavbr";
 import { Redirect } from "react-router-dom";
 import Parse from 'parse';
-import { Container, Form, FormControl, Button } from "react-bootstrap";
+import { Container, Form, FormControl, Button, Accordion ,Card } from "react-bootstrap";
 import MessageModel from '../../model/MessageModel';
 import MessageCard from '../../components/MessageCard/MessageCard';
 
@@ -47,8 +47,10 @@ function MessagesPage(props) {
     if (!activeUser) {
         return <Redirect to="/" />
     }
+
+
     //messages view 
-    const messagesView = messages.map(message => <MessageCard key={message.id} message={message} user={activeUser} />)
+    const messagesView = messages.map((message, index) => <MessageCard key={message.id} message={message} user={activeUser} index={index} />)
 
     return (
         <div>
@@ -57,7 +59,7 @@ function MessagesPage(props) {
             <Container>
                 <h1>Messages of {activeUser.username}</h1>
                 
-            <Form className="d-flex justify-content-between w-100 mb-3" inline>
+            <Form className=" w-100 p-3" inline>
                 <FormControl
                     className="mr-2 w-50"
                     type="text"
@@ -67,7 +69,7 @@ function MessagesPage(props) {
                 <Button variant="primary" onClick={addMessage}>Send</Button>
             </Form>
 
-                {messagesView}
+           <Accordion>{messagesView}</Accordion> 
             </Container>
         </div>
     )
