@@ -78,10 +78,11 @@ function UsersPage(props) {
                 <Row>
                     <Col sm={12} md={6}>
                         <div className="heading">
-                            <h2>Welcome :</h2>
-                            <h2>{activeUser.username}</h2>
-
-                            {activeUser.isAdmin ? <Button className="m-5" variant="secondary" onClick={() => setShowModal(true)}> Add User</Button> : null}
+                            <h2 className="text-center mt-5">Welcome to user management </h2>
+                            <div className="d-flex justify-content-between align-items-center mt-5">
+                            <h2 className="text-center">{activeUser.username}</h2>
+                            {activeUser.isAdmin ? <Button  variant="warning" onClick={() => setShowModal(true)}> Add User</Button> : null}
+                            </div>
                         </div>
                     </Col >
                     <Col sm={12} md={6}>

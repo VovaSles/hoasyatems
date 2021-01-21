@@ -66,7 +66,7 @@ function MessagesPage(props) {
                     placeholder="Write your message ...."
                     value={messageText}
                     onChange={e => setMessageText(e.target.value)} />
-                <Button variant="primary" onClick={addMessage}>Send</Button>
+                <Button variant="warning" onClick={addMessage}>Send</Button>
             </Form>
 
            <Accordion>{messagesView}</Accordion> 

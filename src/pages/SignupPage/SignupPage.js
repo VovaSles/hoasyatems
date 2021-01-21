@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Parse from 'parse';
 import AppNavbar from '../../components/AppNavbar/AppNavbr';
 import UserModel from "../../model/UserModel";
@@ -29,7 +29,7 @@ function SignupPage(props) {
         building.set('number', number);
         const newBuilding = await building.save();
         //ask at Nir about this
-        
+
         // Create a new instance of the user class
         const user = new Parse.User();
         user.set("username", username);
@@ -39,7 +39,7 @@ function SignupPage(props) {
         user.set("buildingId", building.id);
         setSetBuildingId(building.id)
         user.set("apartment", apartment);
-        try{
+        try {
             const parseUser = await user.signUp()
             onLogin(new UserModel(parseUser));
             setRedirectToUsers(true);
@@ -50,74 +50,71 @@ function SignupPage(props) {
             // here you put the objectId that you want to delete
             const object = await query.get(buildingId);
             const response = await object.destroy();
-            console.log(response )
-               
-      
- 
+            console.log(response)
+
+
+
         }
-}
+    }
 
 
 
 
-if (redirectToUsers) {
-    return <Redirect to="/users" />;
-}
+    if (redirectToUsers) {
+        return <Redirect to="/users" />;
+    }
 
-return (
-    <>
-        <AppNavbar activeUser={activeUser} />
-        <div className="p-login">
-            <h1>Sign up to Home App</h1>
-            {showSignupError ? <Alert variant="danger">Invalid Credentials!</Alert> : null}
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} required />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+    return (
+        <>
+            <div className="p-login" >
+                <Link to="/"> <h2 className="text-center">Sign up to HOA Systems</h2></Link>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={pwd} onChange={e => setPwd(e.target.value)} />
-                </Form.Group>
+                {showSignupError ? <Alert variant="danger">Invalid Credentials!</Alert> : null}
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} required />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicUsername">
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control type="text" placeholder="user Name" value={username} onChange={e => setUsername(e.target.value)} />
-                </Form.Group>
-                <div  className="d-flex justify-content-between align-items-center">
-                <Form.Group controlId="formBasicUserCity">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="formBasicUserStreet">
-                    <Form.Label>Street</Form.Label>
-                    <Form.Control type="text" placeholder="Street" value={street} onChange={e => setStreet(e.target.value)} />
-                </Form.Group>
-                </div>
-                <div  className="d-flex justify-content-between align-items-center">
-             
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={pwd} onChange={e => setPwd(e.target.value)} />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicUserHomeNumber">
-                    <Form.Label>Building number</Form.Label>
-                    <Form.Control type="text" placeholder="Building number" value={number} onChange={e => setNumber(e.target.value)} />
-                </Form.Group>
+                    <Form.Group controlId="formBasicUsername">
+                        <Form.Label>User Name</Form.Label>
+                        <Form.Control type="text" placeholder="user Name" value={username} onChange={e => setUsername(e.target.value)} />
+                    </Form.Group>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <Form.Group controlId="formBasicUserCity">
+                            <Form.Label>City</Form.Label>
+                            <Form.Control type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicUserStreet">
+                            <Form.Label>Street</Form.Label>
+                            <Form.Control type="text" placeholder="Street" value={street} onChange={e => setStreet(e.target.value)} />
+                        </Form.Group>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center">
 
-                <Form.Group controlId="formBasicUserHomeNumber">
-                    <Form.Label>Apartment number</Form.Label>
-                    <Form.Control type="text" placeholder="Apartment number" value={apartment} onChange={e => setApartment(e.target.value)} />
-                </Form.Group>
-                </div>
-                <Button variant="success" type="button" block onClick={Signup}>
-                    Sign up
+
+                        <Form.Group controlId="formBasicUserHomeNumber">
+                            <Form.Label>Building number</Form.Label>
+                            <Form.Control type="text" placeholder="Building number" value={number} onChange={e => setNumber(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicUserHomeNumber">
+                            <Form.Label>Apartment number</Form.Label>
+                            <Form.Control type="text" placeholder="Apartment number" value={apartment} onChange={e => setApartment(e.target.value)} />
+                        </Form.Group>
+                    </div>
+                    <Button variant="success" type="button" block onClick={Signup}>
+                        Sign up
                 </Button>
-            </Form>
-        </div>
-    </>
-)
+                </Form>
+            </div>
+        </>
+    )
 
 }
 

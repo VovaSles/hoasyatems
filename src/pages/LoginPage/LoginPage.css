@@ -1,5 +1,10 @@
 
 .p-login {
     width: 500px;
-    margin: 50px auto;
+    margin: 100px auto;
+    
 }
+.link{
+    text-decoration: none;
+}
+

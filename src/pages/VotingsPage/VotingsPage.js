@@ -39,11 +39,11 @@ function VotingsPage(props) {
               <AppNavbr activeUser={activeUser} onLogout={onLogout} />
             <Row>
                 <Col sm={12}  md={6}>
-                <h2>Active voiting</h2>
+                <h2 className="text-center">Active voiting</h2>
                 {usersVotingView}
                 </Col >
                 <Col sm={12} md={6}>
-                   <h2>Voiting results</h2>
+                   <h2 className="text-center">Voiting results</h2>
                 </Col>
             </Row>
         </div>
