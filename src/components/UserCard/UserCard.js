@@ -1,5 +1,7 @@
-import { Card , Button} from "react-bootstrap";
-import Parse from 'parse';
+import { Card } from "react-bootstrap";
+
+
+
 
 function UserCard(props) {
     const { user } = props;

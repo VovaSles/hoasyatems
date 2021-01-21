@@ -28,6 +28,8 @@ function UsersPage(props) {
             fetchData()
         }
     }, [activeUser])
+
+
     //adding new user
     async function addUser(username, email, apartment) {
         const ParseUser = Parse.Object.extend('User');
@@ -39,9 +41,28 @@ function UsersPage(props) {
         newUser.set('apartment', apartment);
         newUser.set('buildingId', activeUser.buildingId);
         newUser.set('isAdmin', false);
-        
-        const parseUser = await newUser.save();
-        setUsers(users.concat(new UserModel(parseUser)));
+
+        const sessionToken = Parse.User.current().get("sessionToken");
+        newUser.signUp(null, {
+            success: function (newUser) {
+                //right now i have successfully signed up a new "student" and am actually logged in as that student
+                Parse.User.become(sessionToken).then(function (newUser) {
+                // The current user is now set back to the teacher.
+                // Continue doing what you want
+                }, function (error) {
+                    // The token could not be validated.
+                    alert('error');
+                });
+             },
+                error: function (user, error) {
+                // Show the error message somewhere and let the user try again
+                alert("Error: " + error.code + " " + error.message);                
+                    }
+             });
+          
+
+
+        setUsers(users.concat(new UserModel(newUser)));
     }
 
     if (!activeUser) {
@@ -57,11 +78,12 @@ function UsersPage(props) {
                 <div className="heading">
                     <h2>Welcome :</h2>      
                   <h2>{activeUser.username}</h2>
-                    <Button className="m-5" variant="secondary" onClick={() => setShowModal(true)}> Add User</Button>
+                
+            {activeUser.isAdmin?<Button className="m-5" variant="secondary" onClick={() => setShowModal(true)}> Add User</Button>: null}
                 </div>
-                <Row>
+              {activeUser.isAdmin?  <Row>
                     {usersView.length ? usersView : "You have no users, maybe create one..."}
-                </Row>
+                </Row> : null}
             </Container>
             <NewUserModal show={showModal} handleClose={() => setShowModal(false)} addUser={addUser} />
         </div>

@@ -9,6 +9,8 @@ import './App.css';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import MessangesPage from './pages/MessagesPage/MessagesPage';
+import VotingsPage from './pages/VotingsPage/VotingsPage';
 import Parse from 'parse';
 import UsersPage from './pages/UsersPage/UsersPage';
 import UserModel from './model/UserModel';
@@ -35,6 +37,8 @@ function App() {
         <Route exact path="/signup"><SignupPage activeUser={activeUser} onLogin={handleLogin}/></Route>
       {/*   protected routs */}
         <Route exact path="/users"><UsersPage activeUser={activeUser} onLogout={handleLogout}/></Route> 
+        <Route exact path="/messages"><MessangesPage activeUser={activeUser} onLogout={handleLogout}/></Route> 
+        <Route exact path="/votings"><VotingsPage activeUser={activeUser} onLogout={handleLogout}/></Route> 
       </Switch>
     </Router>
   );

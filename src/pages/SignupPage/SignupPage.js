@@ -28,6 +28,7 @@ function SignupPage(props) {
         building.set('street', street);
         building.set('number', number);
         const newBuilding = await building.save();
+        //ask at Nir about this
         
         // Create a new instance of the user class
         const user = new Parse.User();
@@ -87,16 +88,18 @@ return (
                     <Form.Label>User Name</Form.Label>
                     <Form.Control type="text" placeholder="user Name" value={username} onChange={e => setUsername(e.target.value)} />
                 </Form.Group>
-
+                <div  className="d-flex justify-content-between align-items-center">
                 <Form.Group controlId="formBasicUserCity">
                     <Form.Label>City</Form.Label>
                     <Form.Control type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
                 </Form.Group>
-
                 <Form.Group controlId="formBasicUserStreet">
                     <Form.Label>Street</Form.Label>
                     <Form.Control type="text" placeholder="Street" value={street} onChange={e => setStreet(e.target.value)} />
                 </Form.Group>
+                </div>
+                <div  className="d-flex justify-content-between align-items-center">
+             
 
                 <Form.Group controlId="formBasicUserHomeNumber">
                     <Form.Label>Building number</Form.Label>
@@ -107,7 +110,7 @@ return (
                     <Form.Label>Apartment number</Form.Label>
                     <Form.Control type="text" placeholder="Apartment number" value={apartment} onChange={e => setApartment(e.target.value)} />
                 </Form.Group>
-
+                </div>
                 <Button variant="success" type="button" block onClick={Signup}>
                     Sign up
                 </Button>
