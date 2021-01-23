@@ -74,22 +74,19 @@ function UsersPage(props) {
     return (
         <div>
             <AppNavbr activeUser={activeUser} onLogout={onLogout} />
-            <Container className="d-flex justify-content-center align-items-center">
+            <h2 className="text-center mt-5">Tenants </h2>
+            <Container className="d-flex justify-content-center align-items-center mt-5">
                 <Row>
                     <Col sm={12} md={6}>
-                        <div className="heading">
-                            <h2 className="text-center mt-5">Welcome to user management </h2>
-                            <div className="d-flex justify-content-between align-items-center mt-5">
-                            <h2 className="text-center">{activeUser.username}</h2>
+                        <div className="heading d-flex justify-content-center align-items-center">
                             {activeUser.isAdmin ? <Button  variant="warning" onClick={() => setShowModal(true)}> Add User</Button> : null}
-                            </div>
                         </div>
                     </Col >
                     <Col sm={12} md={6}>
 
-                        {activeUser.isAdmin ? <Row>
+                        <Row>
                             {usersView.length ? usersView : "You have no users, maybe create one..."}
-                        </Row> : null}
+                        </Row>
                     </Col>
                 </Row>
 

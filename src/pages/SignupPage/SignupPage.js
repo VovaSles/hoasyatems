@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import Parse from 'parse';
-import AppNavbar from '../../components/AppNavbar/AppNavbr';
 import UserModel from "../../model/UserModel";
 
 function SignupPage(props) {
@@ -17,7 +16,7 @@ function SignupPage(props) {
 
     const [showSignupError, setShowSignupError] = useState(false);
     const [redirectToUsers, setRedirectToUsers] = useState(false);
-    const { activeUser, onLogin } = props;
+    const {  onLogin } = props;
 
 
     async function Signup() {
@@ -50,15 +49,8 @@ function SignupPage(props) {
             // here you put the objectId that you want to delete
             const object = await query.get(buildingId);
             const response = await object.destroy();
-            console.log(response)
-
-
-
-        }
+                }
     }
-
-
-
 
     if (redirectToUsers) {
         return <Redirect to="/users" />;

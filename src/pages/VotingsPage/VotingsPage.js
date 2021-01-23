@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Accordion } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import VotingCard from "../../components/VotingCard/VotingCard";
 import Parse from 'parse';
 import VotingModel from "../../model/VotingModel";
 import AppNavbr from "../../components/AppNavbar/AppNavbr";
+import NewVotingModal from '../../components/NewVotingModal/NewVotingModal';
 
 function VotingsPage(props) {
     const { activeUser, onLogout } = props;
     const [showModal, setShowModal] = useState(false);
-    const [votings, setVotings] = useState([]);
+    const [votings, setVotings] = useState([]);///????????
+
 
 
     //fetching votings from parse
-    useEffect(()=> {
+    useEffect(() => {
         async function fetchData() {
             const ParseVoting = Parse.Object.extend('voiting');
             const query = new Parse.Query(ParseVoting);
@@ -28,24 +30,42 @@ function VotingsPage(props) {
     }, [activeUser])
 
 
+    //adding new voting
+   async function addVoting(title, details) {
+
+        const ParseVoting = Parse.Object.extend('voiting');
+        const newVoting = new ParseVoting();
+        newVoting.set('title', title);
+        newVoting.set('details', details);
+        newVoting.set('options', ["in fovor", "against"]);
+        newVoting.set('votes', []);
+        newVoting.set('buildingId', activeUser.buildingId);
+        const parseVoting = await newVoting.save();
+        setVotings(votings.concat(new VotingModel(parseVoting)));
+    }
+
     if (!activeUser) {
         return <Redirect to="/" />
     }
     //users votings
-    const usersVotingView = votings.map(voting => <Col className="m-3" key={voting.id} lg={8} md={12}><VotingCard key={voting.id} voting={voting} user={activeUser} /></Col>)
-   
+    const usersVotingView = votings.map(voting => <Col className="m-3" key={voting.id} ><VotingCard key={voting.id} voting={voting} user={activeUser} /></Col>)
+
     return (
         <div>
-              <AppNavbr activeUser={activeUser} onLogout={onLogout} />
-            <Row>
-                <Col sm={12}  md={6}>
-                <h2 className="text-center">Active voiting</h2>
-                {usersVotingView}
-                </Col >
-                <Col sm={12} md={6}>
-                   <h2 className="text-center">Voiting results</h2>
-                </Col>
-            </Row>
+            <AppNavbr activeUser={activeUser} onLogout={onLogout} />
+            <Container>
+            <h2 className="text-center mt-5">Voiting</h2>
+                <Row>
+                    <Col className="d-flex justify-content-center align-items-center">
+                        {activeUser.isAdmin ? <Button  variant="warning" onClick={() => setShowModal(true)}> Add Voting</Button> : null}
+                    </Col>
+                    <Col >
+                      
+                        <Accordion>{usersVotingView}</Accordion>
+                    </Col >
+                </Row>
+            </Container>
+            <NewVotingModal show={showModal} handleClose={() => setShowModal(false)} addVoting={addVoting} />
         </div>
     )
 }
