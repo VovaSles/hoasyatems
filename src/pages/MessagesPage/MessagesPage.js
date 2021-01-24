@@ -35,14 +35,47 @@ function MessagesPage(props) {
         newMessage.set('createdBy', activeUser.id);
         newMessage.set('creatorName', activeUser.username);
         newMessage.set('buildingId', activeUser.buildingId);
+        newMessage.set('seen', []);
 
 
         const parseMessage = await newMessage.save();
         setMessageText("")
         setMessages(messages.concat(new MessageModel(newMessage)));
     }
+/* 
+    const onClickAcordion = (message, userId) =>{
+     if (!message.seen.includes(userId)){
+        const message = Parse.Object.extend('message');
+        const query = new Parse.Query(message);
+        // here you put the objectId that you want to update
+        query.get('xKue915KBG').then((object) => {
+          object.set('seen', message.seen.concat(userId));
+          object.save().then((response) => {
+            // You can use the "get" method to get the value of an attribute
+            // Ex: response.get("<ATTRIBUTE_NAME>")
+            if (typeof document !== 'undefined') document.write(`Updated message: ${JSON.stringify(response)}`);
+            console.log('Updated message', response);
+          }, (error) => {
+            if (typeof document !== 'undefined') document.write(`Error while updating message: ${JSON.stringify(error)}`);
+            console.error('Error while updating message', error);
+          });
+        });
+        message.seen = message.seen.concat(userId);
 
-
+        // 1) Duplicate message object
+        const updatedMessage = {...message};
+    
+        // 2) find index of message
+         const index = messages.indexOf(message);
+    
+        // 3) replace the object in the above index with the updatedMessage
+        messages[index] = updatedMessage;
+    
+         setMessages([...messages]);
+        
+     }
+    }
+     */
 
     if (!activeUser) {
         return <Redirect to="/" />

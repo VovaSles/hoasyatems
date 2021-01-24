@@ -7,6 +7,7 @@ class MessageModel {
         this.title = parseMessage.get("title");
         this.buildingId = parseMessage.get("buildingId");
         this.creatorName = parseMessage.get("creatorName");
+        this.seen = parseMessage.get("seen");
     }
 }
 

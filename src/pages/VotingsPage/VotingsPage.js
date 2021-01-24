@@ -70,11 +70,8 @@ const setVotingsCallback =(voting, votes) =>{
             <Container style={{marginTop: "100px"}}>
             
                 <Row>
-                    <Col className="d-flex justify-content-center align-items-center">
-                        {activeUser.isAdmin ? <Button  variant="warning" onClick={() => setShowModal(true)}> Add Voting</Button> : null}
-                    </Col>
                     <Col >
-                      
+                    {activeUser.isAdmin ? <Button className="ml-5"  variant="warning" onClick={() => setShowModal(true)}> Add Voting</Button> : null}
                         <Accordion>{usersVotingView}</Accordion>
                     </Col >
                 </Row>

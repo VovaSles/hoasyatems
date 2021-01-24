@@ -51,7 +51,7 @@ function VotingCard (props) {
 
                         <Col className="d-flex justify-content-center align-items-center" >
                            <Chart
-                                width={'300px'}
+                                width={'200px'}
                                 height={'200px'}
                                 chartType="PieChart"
                                 loader={<div>Loading Chart</div>}
