@@ -4,7 +4,7 @@ import { Chart } from "react-google-charts";
 import Parse from 'parse';
 
 function VotingCard (props) {
-    const { user, voting } = props;
+    const { user, voting, callback } = props;
     const [voted, setVoted] = useState(false)
     
 
@@ -15,10 +15,12 @@ function VotingCard (props) {
         const query = new Parse.Query(MyCustomClass);
         // here you put the objectId that you want to update
          const parseVoting = await query.get(voting.id);
-         parseVoting.set('votes', voting.votes.concat({"voteBy": user.id, "vote": "in fovor"}));
+        const votesArray = voting.votes.concat({"voteBy": user.id, "vote": "in fovor"});
+         parseVoting.set('votes', votesArray);
          const updatedParseVoting = await parseVoting.save();
          setVoted(true);
          console.log(updatedParseVoting);
+         callback(voting, votesArray)
     }
    
    
@@ -36,7 +38,7 @@ function VotingCard (props) {
         }
 
     return (
-        <div>
+        <div className="animate-falldown" >
             <Card>
             <Accordion.Toggle as={Card.Header} eventKey={voting.id}  className="d-flex justify-content-between align-items-center">
             {voting.title}
@@ -48,7 +50,7 @@ function VotingCard (props) {
                         <p className="p-2">{voting.details}</p>
 
                         <Col className="d-flex justify-content-center align-items-center" >
-                            <Chart
+                           <Chart
                                 width={'300px'}
                                 height={'200px'}
                                 chartType="PieChart"

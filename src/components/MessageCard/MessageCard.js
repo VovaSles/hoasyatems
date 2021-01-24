@@ -6,8 +6,8 @@ function MessageCard(props) {
     const { message, index } = props;
 
     return (
-        <>
-            <Card>
+        <div className="animate-falldown mt-3">
+            <Card >
                 <Accordion.Toggle as={Card.Header} eventKey={message.id}  className="d-flex justify-content-between align-items-center">
                     {message.creatorName}
                     
@@ -18,7 +18,7 @@ function MessageCard(props) {
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-        </>
+        </div>
     )
 }
 

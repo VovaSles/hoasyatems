@@ -56,9 +56,7 @@ function MessagesPage(props) {
         <div>
             <AppNavbr activeUser={activeUser} onLogout={onLogout} />
 
-            <Container>
-                <h1 className="text-center">Messages</h1>
-                
+            <Container style={{marginTop: "90px"}}> 
             <Form className=" w-100 mb-5 mt-5 " inline>
                 <FormControl
                     className=" w-50"

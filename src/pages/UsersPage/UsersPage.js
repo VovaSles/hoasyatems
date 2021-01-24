@@ -74,9 +74,10 @@ function UsersPage(props) {
     return (
         <div>
             <AppNavbr activeUser={activeUser} onLogout={onLogout} />
-            <h2 className="text-center mt-5">Tenants </h2>
-            <Container className="d-flex justify-content-center align-items-center mt-5">
+            <Container className="d-flex justify-content-center align-items-center" style={{marginTop: "100px"}}>
+                
                 <Row>
+               
                     <Col sm={12} md={6}>
                         <div className="heading d-flex justify-content-center align-items-center">
                             {activeUser.isAdmin ? <Button  variant="warning" onClick={() => setShowModal(true)}> Add User</Button> : null}

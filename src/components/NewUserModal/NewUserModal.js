@@ -66,7 +66,7 @@ function NewUserModal(props) {
                 <Button variant="secondary" onClick={closeModal}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={handleAddUser}>
+                <Button variant="primary" onClick={handleAddUser} disabled>
                     Create User
                 </Button>
             </Modal.Footer>

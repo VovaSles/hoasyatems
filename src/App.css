@@ -1,3 +1,17 @@
 body{
 background-color: lightblue;
 }
+
+@keyframes falldown {
+    from {
+        transform: translate(0, -100vh);
+    }
+
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+.animate-falldown {
+    animation: falldown 3s forwards;
+}

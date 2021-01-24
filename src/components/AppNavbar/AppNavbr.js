@@ -6,6 +6,7 @@ function AppNavbr(props) {
     const { activeUser, onLogout } = props;
 
     return (
+        <div className="fixed-top">
         <Navbar className="d-flex justify-content-between align-items-center" bg="light" expand="lg">
             <Navbar.Brand  href="/">HOA Systems</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,6 +23,7 @@ function AppNavbr(props) {
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
+        </div>
     )
 }
 

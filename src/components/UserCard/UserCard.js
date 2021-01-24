@@ -9,7 +9,7 @@ function UserCard(props) {
 
 
     return (
-        <div >
+        <div className="animate-falldown">
             <Card>
             <Card.Title className="m-3">name : {user.username}</Card.Title>
                 <Card.Body>
