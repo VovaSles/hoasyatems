@@ -1,7 +1,7 @@
 {
-  "homepage": "http://VovaSles.github.io/hoasystems",
-  "name": "hoasystems",
+  "name": "buildman",
   "version": "0.1.0",
+  "homepage": "http://VovaSles.github.io/hoasyatems",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",

@@ -32,8 +32,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
-        <Route exact path="/buildman"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
+        <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
         <Route exact path="/login"><LoginPage activeUser={activeUser} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser} onLogin={handleLogin}/></Route>
       {/*   protected routs */}
